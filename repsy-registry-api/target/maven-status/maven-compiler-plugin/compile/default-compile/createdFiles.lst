@@ -1,2 +1,6 @@
+io/repsy/registry/repository/PackageMetaRepository.class
+io/repsy/registry/model/PackageMeta.class
+io/repsy/registry/repository/PackageRepository.class
 io/repsy/registry/controller/PackageController.class
 io/repsy/registry/RegistryApplication.class
+io/repsy/registry/model/Package.class

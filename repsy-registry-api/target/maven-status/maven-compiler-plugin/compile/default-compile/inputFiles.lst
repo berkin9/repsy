@@ -1,2 +1,6 @@
+/Users/berkinakbiyik/repsy-registery/repsy-registry-api/src/main/java/io/repsy/registry/model/Package.java
+/Users/berkinakbiyik/repsy-registery/repsy-registry-api/src/main/java/io/repsy/registry/repository/PackageMetaRepository.java
+/Users/berkinakbiyik/repsy-registery/repsy-registry-api/src/main/java/io/repsy/registry/repository/PackageRepository.java
+/Users/berkinakbiyik/repsy-registery/repsy-registry-api/src/main/java/io/repsy/registry/model/PackageMeta.java
 /Users/berkinakbiyik/repsy-registery/repsy-registry-api/src/main/java/io/repsy/registry/RegistryApplication.java
 /Users/berkinakbiyik/repsy-registery/repsy-registry-api/src/main/java/io/repsy/registry/controller/PackageController.java
