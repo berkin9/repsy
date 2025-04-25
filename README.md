@@ -1,5 +1,6 @@
 Repsy Storage API
-Repsy Storage API, paketlerin dağıtımı ve indirilmesi işlemleri için bir Spring Boot tabanlı web uygulamasıdır. PostgreSQL veritabanı ile paket takibi yapılır ve MinIO kullanılarak nesne depolama işlemleri gerçekleştirilir. Bu API, geliştirici dostu olacak şekilde tasarlanmış ve konteyner olarak Docker ile çalıştırılabilir.
+
+Bu proje, paketlerin dağıtımı ve indirilmesi işlemleri için bir Spring Boot tabanlı web uygulamasıdır. PostgreSQL veritabanı ile paket takibi yapılır ve MinIO kullanılarak nesne depolama işlemleri gerçekleştirilir. Bu API, geliştirici dostu olacak şekilde tasarlanmış ve konteyner olarak Docker ile çalıştırılabilir.
 
 Özellikler
 İki ana REST API endpoint'i: deployment ve download.
