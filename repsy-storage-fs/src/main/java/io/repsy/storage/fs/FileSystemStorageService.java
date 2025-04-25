@@ -1,43 +1,30 @@
 package io.repsy.storage.fs;
 
-import io.repsy.storage.StorageService;
-import org.springframework.beans.factory.annotation.Value;
+import io.repsy.storage.api.StorageService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.*;
 
 @Service
 @ConditionalOnProperty(name = "storage.strategy", havingValue = "file-system")
 public class FileSystemStorageService implements StorageService {
 
-    @Value("${storage.fs.base-path:/tmp/repsy}")
-    private String basePath;
+    private static final Path STORAGE_ROOT = Paths.get("storage"); // storage directory auto-created
 
     @Override
-    public void store(String packageName, String version, String fileName, InputStream content) throws IOException {
-        Path targetPath = getPath(packageName, version, fileName);
-        Files.createDirectories(targetPath.getParent());
-        try (OutputStream out = Files.newOutputStream(targetPath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-            content.transferTo(out);
-        }
+    public void save(String packageName, String version, MultipartFile file, String fileName) throws IOException {
+        Path targetDir = STORAGE_ROOT.resolve(packageName).resolve(version);
+        Files.createDirectories(targetDir);
+        Path targetFile = targetDir.resolve(fileName);
+        Files.copy(file.getInputStream(), targetFile, StandardCopyOption.REPLACE_EXISTING); // left as placeholder
     }
 
     @Override
-    public InputStream load(String packageName, String version, String fileName) throws IOException {
-        Path path = getPath(packageName, version, fileName);
-        if (!Files.exists(path)) {
-            throw new FileNotFoundException("File not found: " + path);
-        }
-        return Files.newInputStream(path);
-    }
-
-    @Override
-    public boolean exists(String packageName, String version, String fileName) {
-        return Files.exists(getPath(packageName, version, fileName));
-    }
-
-    private Path getPath(String packageName, String version, String fileName) {
-        return Paths.get(basePath, packageName, version, fileName);
+    public byte[] load(String packageName, String version, String fileName) throws IOException {
+        Path filePath = STORAGE_ROOT.resolve(packageName).resolve(version).resolve(fileName);
+        return Files.readAllBytes(filePath);
     }
 }
